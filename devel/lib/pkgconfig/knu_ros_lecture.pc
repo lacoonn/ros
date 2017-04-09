@@ -1,0 +1,8 @@
+prefix=/home/turtle/catkin_ws/devel
+
+Name: knu_ros_lecture
+Description: Description of knu_ros_lecture
+Version: 0.0.0
+Cflags: -I/home/turtle/catkin_ws/src/knu_ros_lecture/include
+Libs: -L/home/turtle/catkin_ws/devel/lib -lknu_ros_lecture
+Requires: roscpp std_msgs
