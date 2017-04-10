@@ -2,24 +2,16 @@
 #include <turtlesim/Pose.h>
 #include <geometry_msgs/Twist.h>
 #include <iomanip>
+#include <std_srvs/Empty.h>
 
 #define DIS 0.1
 #define SCOPE 0.005
 #define SPEED 1
-#define ROTATE 0.10
+#define ROTATE 0.2
 
 // 거북은 이동과 회전 상태를 반복하며 한붓그리기를 실행합니다.
 enum state {ST1, RT1, ST2, RT2, ST3, RT3, ST4, RT4, ST5, RT5, ST6, RT6, ST7,
   RT7, ST8, END};
-
-// 거북이 이동 상태에서 목표 위치에 도달했는지 확인하는 함수입니다.
-// 정확한 위치로 이동하기 힘들기 때문에 범위를 정해 그 안에 도달하면 도착으로 인정합니다.
-bool isArrive(double a, double b, double x, double y)
-{
-    if ((a-x)*(a-x) + (b-y)*(b-y) < DIS * DIS)
-        return true;
-    return false;
-}
 
 // publish와 subscribe를 함께 하기 위해 클래스를 사용했습니다.
 class turtlesim_cycle
@@ -29,8 +21,24 @@ public:
     {
         pub = nh.advertise<geometry_msgs::Twist>("turtle1/cmd_vel", 100);
         sub = nh.subscribe("turtle1/pose", 100, &turtlesim_cycle::poseMessageReceived, this);
+        reset = nh.serviceClient<std_srvs::Empty>("/reset");
         nstate = ST1;
     }
+    // 거북이 이동 상태에서 목표 위치에 도달했는지 확인하는 함수입니다.
+    // 정확한 위치로 이동하기 힘들기 때문에 범위를 정해 그 안에 도달하면 도착으로 인정합니다.
+    bool isArrive(double a, double b, double x, double y)
+    {
+        if ((a-x)*(a-x) + (b-y)*(b-y) < DIS * DIS)
+            return true;
+        return false;
+    }
+
+    void resetTurtle()
+    {
+      std_srvs::Empty epy;
+      reset.call(epy);
+    }
+
     //CallBack 함수입니다.
     void poseMessageReceived(const turtlesim::Pose &mssg)
     {
@@ -132,8 +140,10 @@ public:
         case ST8:
             move.linear.x = SPEED;
             move.angular.z = 0;
-            if(isArrive(10, 5.54, msg.x, msg.y))
-              nstate = END;
+            if(isArrive(10, 5.54, msg.x, msg.y)) {
+              resetTurtle();
+              nstate = ST1;
+            }
             break;
         case END:
             move.linear.x = 0;
@@ -148,6 +158,7 @@ private:
     ros::NodeHandle nh;
     ros::Publisher pub;
     ros::Subscriber sub;
+    ros::ServiceClient reset;
     geometry_msgs::Twist move;
     enum state nstate;
     turtlesim::Pose msg;

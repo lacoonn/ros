@@ -58,6 +58,9 @@ knu_ros_lecture/CMakeFiles/turtlesim_cycle.dir/src/turtlesim_cycle.cpp.o: /opt/r
 knu_ros_lecture/CMakeFiles/turtlesim_cycle.dir/src/turtlesim_cycle.cpp.o: /opt/ros/kinetic/include/ros/wall_timer.h
 knu_ros_lecture/CMakeFiles/turtlesim_cycle.dir/src/turtlesim_cycle.cpp.o: /opt/ros/kinetic/include/ros/wall_timer_options.h
 knu_ros_lecture/CMakeFiles/turtlesim_cycle.dir/src/turtlesim_cycle.cpp.o: /opt/ros/kinetic/include/rosconsole/macros_generated.h
+knu_ros_lecture/CMakeFiles/turtlesim_cycle.dir/src/turtlesim_cycle.cpp.o: /opt/ros/kinetic/include/std_srvs/Empty.h
+knu_ros_lecture/CMakeFiles/turtlesim_cycle.dir/src/turtlesim_cycle.cpp.o: /opt/ros/kinetic/include/std_srvs/EmptyRequest.h
+knu_ros_lecture/CMakeFiles/turtlesim_cycle.dir/src/turtlesim_cycle.cpp.o: /opt/ros/kinetic/include/std_srvs/EmptyResponse.h
 knu_ros_lecture/CMakeFiles/turtlesim_cycle.dir/src/turtlesim_cycle.cpp.o: /opt/ros/kinetic/include/turtlesim/Pose.h
 knu_ros_lecture/CMakeFiles/turtlesim_cycle.dir/src/turtlesim_cycle.cpp.o: /opt/ros/kinetic/include/xmlrpcpp/XmlRpcDecl.h
 knu_ros_lecture/CMakeFiles/turtlesim_cycle.dir/src/turtlesim_cycle.cpp.o: /opt/ros/kinetic/include/xmlrpcpp/XmlRpcValue.h
