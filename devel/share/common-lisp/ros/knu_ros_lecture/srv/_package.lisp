@@ -1,0 +1,10 @@
+(cl:defpackage knu_ros_lecture-srv
+  (:use )
+  (:export
+   "SRVKNUROSLECTURE"
+   "<SRVKNUROSLECTURE-REQUEST>"
+   "SRVKNUROSLECTURE-REQUEST"
+   "<SRVKNUROSLECTURE-RESPONSE>"
+   "SRVKNUROSLECTURE-RESPONSE"
+  ))
+
