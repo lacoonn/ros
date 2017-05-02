@@ -4,6 +4,7 @@ project(knu_ros_lecture)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
+  cv_bridge
   message_generation
   cv_bridge
   actionlib
@@ -54,7 +55,7 @@ add_executable(server_srv_tutorial_param src/server_srv_tutorial_param.cpp)
 add_executable(client_srv_tutorial_param src/client_srv_tutorial_param.cpp)
 add_executable(turtle_position_move_new_2017 src/turtle_position_move_new_2017.cpp)
 add_executable(turtle_position_move src/turtle_position_move.cpp)
-add_executable(turtle_position_move_from_file src/turtle_position_move_from_file.cpp)
+
 
 
 add_dependencies(hello_world_node knu_ros_lecture_generate_message_cpp)
@@ -71,7 +72,7 @@ add_dependencies(server_srv_tutorial_param knu_ros_lecture_generate_messages_cpp
 add_dependencies(client_srv_tutorial_param knu_ros_lecture_generate_messages_cpp)
 add_dependencies(turtle_position_move_new_2017 knu_ros_lecture_generate_messages_cpp)
 add_dependencies(turtle_position_move knu_ros_lecture_generate_messages_cpp)
-add_dependencies(turtle_position_move_from_file knu_ros_lecture_generate_messages_cpp)
+
 
 
 target_link_libraries(talker ${catkin_LIBRARIES})
@@ -88,4 +89,14 @@ target_link_libraries(server_srv_tutorial_param ${catkin_LIBRARIES} )
 target_link_libraries(client_srv_tutorial_param ${catkin_LIBRARIES} )
 target_link_libraries(turtle_position_move_new_2017 ${catkin_LIBRARIES} )
 target_link_libraries(turtle_position_move ${catkin_LIBRARIES} )
+
+
+# turtle_position_move_from_file(hw3)
+add_executable(turtle_position_move_from_file src/turtle_position_move_from_file.cpp)
+add_dependencies(turtle_position_move_from_file knu_ros_lecture_generate_messages_cpp)
 target_link_libraries(turtle_position_move_from_file ${catkin_LIBRARIES} )
+
+# opencv
+add_executable(opencv_intro src/opencv_intro.cpp)
+add_dependencies(opencv_intro knu_ros_lecture_generate_messages_cpp)
+target_link_libraries(opencv_intro ${catkin_LIBRARIES} )
