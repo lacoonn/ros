@@ -28,6 +28,7 @@ using namespace cv;
 
 geometry_msgs::Pose npose;
 bool getMsg;
+bool isFin = false;
 // init buffer image
 Mat display = Mat::zeros(ROWS, COLS, CV_8UC3);
 int portion = 20;
@@ -53,6 +54,8 @@ void *printCV(void *data)
 	while(1) {
 		imshow("turtle_position_move_from_file_cv", display);
 		int nKey = waitKey(30) % 255;
+		if (isFin)
+			break;
 	}
 }
 
@@ -125,7 +128,7 @@ int main(int argc, char **argv)
 
 		// 각도가 맞을때까지 오차교정
 		double count = 1;
-		while(abs(angle - rotation) > 0.1) {
+		while(abs(angle - rotation) > 0.02) {
 			actionlib::SimpleActionClient<turtlebot_actions::TurtlebotMoveAction> client("turtlebot_move");
 			turtlebot_actions::TurtlebotMoveGoal goal;
 			client.waitForServer();
@@ -162,7 +165,9 @@ int main(int argc, char **argv)
 		prev_x = now_x;
 		prev_y = now_y;
 	}
-
+	
+	isFin = true;
+	pthread_join(printcv, NULL);
 
 	return 0;
 }
