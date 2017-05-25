@@ -100,3 +100,38 @@ target_link_libraries(turtle_position_move_from_file ${catkin_LIBRARIES} )
 add_executable(opencv_intro src/opencv_intro.cpp)
 add_dependencies(opencv_intro knu_ros_lecture_generate_messages_cpp)
 target_link_libraries(opencv_intro ${catkin_LIBRARIES} )
+
+# turtle_kinect_lrf_viewer_lecture8
+# add_executable(turtle_kinect_lrf_viewer_lecture8 src/turtle_kinect_lrf_viewer_lecture8.cpp)
+# add_dependencies(turtle_kinect_lrf_viewer_lecture8 knu_ros_lecture_generate_messages_cpp)
+# target_link_libraries(turtle_kinect_lrf_viewer_lecture8 ${catkin_LIBRARIES} )
+
+# ros_kinect_alignment
+add_executable(ros_kinect_alignment src/ros_kinect_alignment.cpp)
+add_dependencies(ros_kinect_alignment knu_ros_lecture_generate_messages_cpp)
+target_link_libraries(ros_kinect_alignment ${catkin_LIBRARIES} )
+
+# turtle_odom_polar_alignment
+# add_executable(turtle_odom_polar_alignment src/turtle_odom_polar_alignment.cpp)
+# add_dependencies(turtle_odom_polar_alignment knu_ros_lecture_generate_messages_cpp)
+# target_link_libraries(turtle_odom_polar_alignment ${catkin_LIBRARIES} )
+
+# turtle_position_lrf_view
+add_executable(turtle_position_lrf_view src/turtle_position_lrf_view.cpp)
+add_dependencies(turtle_position_lrf_view knu_ros_lecture_generate_messages_cpp)
+target_link_libraries(turtle_position_lrf_view ${catkin_LIBRARIES} )
+
+# turtle_kinect_image_view
+add_executable(turtle_kinect_image_view src/turtle_kinect_image_view.cpp)
+add_dependencies(turtle_kinect_image_view knu_ros_lecture_generate_messages_cpp)
+target_link_libraries(turtle_kinect_image_view ${catkin_LIBRARIES} )
+
+# turtle_kinect_lrf_view_lec11
+add_executable(turtle_kinect_lrf_view_lec11 src/turtle_kinect_lrf_view_lec11.cpp)
+add_dependencies(turtle_kinect_lrf_view_lec11 knu_ros_lecture_generate_messages_cpp)
+target_link_libraries(turtle_kinect_lrf_view_lec11 ${catkin_LIBRARIES} )
+
+# turtle_pattern_recognition
+add_executable(turtle_pattern_recognition src/turtle_pattern_recognition.cpp)
+add_dependencies(turtle_pattern_recognition knu_ros_lecture_generate_messages_cpp)
+target_link_libraries(turtle_pattern_recognition ${catkin_LIBRARIES} )

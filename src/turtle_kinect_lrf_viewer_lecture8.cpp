@@ -6,9 +6,12 @@
 #include <boost/thread/mutex.hpp>
 #include <sensor_msgs/LaserScan.h>
 
+#include <opencv2/core/core.hpp>
+#include <opencv2/highgui/highgui.hpp>
+#include <nav_msgs/Odometry.h>
 
 using namespace cv;
-
+using namespace std;
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -62,8 +65,6 @@ convertScan2XYZs(sensor_msgs::LaserScan& lrfScan, vector<Vec3d> &XYZs)
     }
 }
 
-
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 void
@@ -97,8 +98,31 @@ drawLRFScan(Mat &display, vector<Vec3d> &laserScanXY, double dMaxDist)
     }
 }
 
+void convertOdom2XYZRPY(nav_msgs::Odometry &odom, Vec3d &xyz, Vec3d &rpy)
+{ // 이동 저장
+xyz[0] = odom.pose.pose.position.x;
+xyz[1] = odom.pose.pose.position.y;
+xyz[2] = odom.pose.pose.position.z;
+// 회전 저장
+tf::Quaternion rotationQuat =
+tf::Quaternion(odom.pose.pose.orientation.x, odom.pose.pose.orientation.y,
+odom.pose.pose.orientation.z, odom.pose.pose.orientation.w);
+tf::Matrix3x3(rotationQuat).getEulerYPR(rpy[2], rpy[1], rpy[0]);
+}
 
-
+void transform(vector<Vec3d> &laserScanXY, double x, double y, double theta)
+{
+Vec3d newPt;
+double cosTheta = cos(theta);
+double sinTheta = sin(theta);
+int nRangeSize = (int)laserScanXY.size();
+for(int i=0; i<nRangeSize; i++) {
+newPt[0] = cosTheta*laserScanXY[i][0] + -1.*sinTheta*laserScanXY[i][1] + x;
+newPt[1] = sinTheta*laserScanXY[i][0] + cosTheta*laserScanXY[i][1] + y;
+newPt[2];
+laserScanXY[i] = newPt;
+}
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -142,9 +166,9 @@ int main(int argc, char **argv)
         drawLRFScan(display, laserScanXY, dGridMaxDist);
 
         // 2D 영상좌표계에서 top-view 방식의 3차원 월드좌표계로 변환
-        //transpose(display, display);  // X-Y축 교환
-        //flip(display, display, 0);  // 수평방향 반전
-        //flip(display, display, 1);  // 수직방향 반전
+        transpose(display, display);  // X-Y축 교환
+        flip(display, display, 0);  // 수평방향 반전
+        flip(display, display, 1);  // 수직방향 반전
 
         // 영상 출력!
         imshow("KNU ROS Lecture >> turtle_kinect_lrf_view", display);

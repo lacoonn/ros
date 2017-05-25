@@ -8,9 +8,12 @@
 #include <boost/thread/mutex.hpp>
 #include <sensor_msgs/LaserScan.h>
 
+#include <opencv2/core/core.hpp>
+#include <opencv2/highgui/highgui.hpp>
+
 
 using namespace cv;
-
+using namespace std;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //

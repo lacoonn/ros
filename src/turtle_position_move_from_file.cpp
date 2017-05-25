@@ -18,7 +18,6 @@
 
 using namespace std;
 using namespace cv;
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #define toRadian(degree) ((degree) * (M_PI / 180.))
 #define toDegree(radian) ((radian) * (180. / M_PI))
@@ -126,14 +125,14 @@ int main(int argc, char **argv)
 		}
 	*/
 
-		// 각도가 맞을때까지 오차교정
+		// 각도�? 맞을?��까�?? ?��차교?��
 		double count = 1;
 		while(abs(angle - rotation) > 0.02) {
 			actionlib::SimpleActionClient<turtlebot_actions::TurtlebotMoveAction> client("turtlebot_move");
 			turtlebot_actions::TurtlebotMoveGoal goal;
 			client.waitForServer();
 			goal.turn_distance = (rotation - angle) + 5.76;
-			cout << "지금각도 : " << toDegree(angle) << ", 목표각도 : " << toDegree(rotation) << ", 회전각도 : " << toDegree((rotation - angle) + 5.76) << endl;
+			cout << "�?금각?�� : " << toDegree(angle) << ", 목표각도 : " << toDegree(rotation) << ", ?��?��각도 : " << toDegree((rotation - angle) + 5.76) << endl;
 			if (count < 15);
 				count += 1;
 			client.sendGoalAndWait(goal, ros::Duration(50.0), ros::Duration(50.0));
@@ -165,7 +164,7 @@ int main(int argc, char **argv)
 		prev_x = now_x;
 		prev_y = now_y;
 	}
-	
+
 	isFin = true;
 	pthread_join(printcv, NULL);
 
