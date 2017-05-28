@@ -135,3 +135,8 @@ target_link_libraries(turtle_kinect_lrf_view_lec11 ${catkin_LIBRARIES} )
 add_executable(turtle_pattern_recognition src/turtle_pattern_recognition.cpp)
 add_dependencies(turtle_pattern_recognition knu_ros_lecture_generate_messages_cpp)
 target_link_libraries(turtle_pattern_recognition ${catkin_LIBRARIES} )
+
+# turtlebot_map
+add_executable(turtlebot_map src/turtlebot_map.cpp)
+add_dependencies(turtlebot_map knu_ros_lecture_generate_messages_cpp)
+target_link_libraries(turtlebot_map ${catkin_LIBRARIES} )
