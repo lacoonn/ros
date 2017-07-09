@@ -137,6 +137,16 @@ add_dependencies(turtle_pattern_recognition knu_ros_lecture_generate_messages_cp
 target_link_libraries(turtle_pattern_recognition ${catkin_LIBRARIES} )
 
 # turtlebot_map
-add_executable(turtlebot_map src/turtlebot_map.cpp)
-add_dependencies(turtlebot_map knu_ros_lecture_generate_messages_cpp)
-target_link_libraries(turtlebot_map ${catkin_LIBRARIES} )
+#add_executable(turtlebot_map src/turtlebot_map.cpp)
+#add_dependencies(turtlebot_map knu_ros_lecture_generate_messages_cpp)
+#target_link_libraries(turtlebot_map ${catkin_LIBRARIES} )
+
+# Building_Map
+#add_executable(turtlebot_map src/TurtlebotGeneratingMap/turtlebot_map.cpp)
+#add_dependencies(turtlebot_map knu_ros_lecture_generate_messages_cpp)
+#target_link_libraries(turtlebot_map ${catkin_LIBRARIES} )
+
+# Building_Map
+add_executable(main src/TurtlebotGeneratingMap/main.cpp)
+add_dependencies(main knu_ros_lecture_generate_messages_cpp)
+target_link_libraries(main ${catkin_LIBRARIES} )
